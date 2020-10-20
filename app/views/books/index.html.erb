@@ -4,7 +4,7 @@
 <!-- books -->
  <div class="row">
     <div class="col-xs-3">
-     <%= render 'users/list', user: current_user, book: @book %>
+     <%= render 'users/list', user: current_user, book: @book_new %>
     </div>
       <div class="col-xs-9">
        <div class="books">
@@ -30,25 +30,10 @@
                     <li>By
                       <%= book.user.name %>
                     </li>
-                    <% if @book.favorited_by?(current_user) %>
-                    <li>
-                      <%= link_to book_favorites_path(@book), method: :delete do %>
-                         <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i>
-                        <%= @book.favorites.count %> いいね
-                    <% end %>
-                    </li>
-                    <% else %>
-                    <li>
-                      <%= link_to book_favorites_path(book), method: :book do %>
-                        <i class="far fa-heart" aria-hidden="true"></i>
-                        <%= @book.favorites.count %> いいね
-                    <% end %>
-                    </li>
-                    <% end %>
-                    <li>
-                      <i class="fa fa-comment"></i>
-                      <%= link_to "#{book.book_comments.count} コメント", book_path(book.id) %>
-                    </li>
+                     <div id="favorites_buttons_<%= book.id %>">
+                         <%= render partial: 'favorites/favorite', locals: { book: book} %>
+                     </div>
+                    
                   </ul>
                <% end %>
                </td>
