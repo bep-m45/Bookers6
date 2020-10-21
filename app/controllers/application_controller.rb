@@ -20,6 +20,8 @@ class ApplicationController < ActionController::Base
     flash[:success] = "Signed out successfully."
     redairect_to root_path
   end
+  
+ 
 
 
 
